@@ -2,5 +2,7 @@
   "name": "app-maisvida-mobile",
   "app_id": "30ccca7c",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }
