@@ -16,6 +16,8 @@ import {BaseHttpProvider} from '../providers/base-http/base-http';
 import {HttpModule} from "@angular/http";
 import {DoctorProvider} from '../providers/doctor/doctor';
 import {DoctorNewPage} from "../pages/doctor-new/doctor-new";
+import {BasePage} from "../pages/base/base";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 const PAGES = [
@@ -25,7 +27,8 @@ const PAGES = [
   HomePage,
   TabsPage,
   LoginPage,
-  DoctorNewPage
+  DoctorNewPage,
+  BasePage
 ]
 
 @NgModule({
@@ -33,6 +36,8 @@ const PAGES = [
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

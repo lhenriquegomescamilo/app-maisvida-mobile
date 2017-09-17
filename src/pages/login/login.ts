@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {User} from "../../User";
+import {User} from "../../models/User";
 import {LoginProvider} from "../../providers/login/login";
+import * as _ from "lodash";
+import {BasePage} from "../base/base";
 
 /**
  * Generated class for the LoginPage page.
@@ -17,7 +19,7 @@ import {LoginProvider} from "../../providers/login/login";
 })
 export class LoginPage {
 
-  user: User = {username: '', password: ''};
+  user: User = {username: 'admin', password: 'password'};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private _loginProvider: LoginProvider) {
   }
@@ -26,8 +28,14 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  login(){
-    this._loginProvider.findTokenByUsernameAndPassword(this.user);
+  login() {
+    this._loginProvider
+      .findTokenByUsernameAndPassword(this.user)
+      .subscribe(body => {
+        if (!_.isEmpty(body)) {
+          this.navCtrl.push(BasePage);
+        }
+      });
   }
 
 }

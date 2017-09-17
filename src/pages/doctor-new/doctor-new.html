@@ -7,12 +7,33 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>doctor-new</ion-title>
+    <ion-title>Cadastro de médico</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" formControlName="firstName" placeholder="Segundo nome"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="text" formControlName="lastName" placeholder="Primeiro nome"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-input type="text" formControlName="email" placeholder="Email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Ativo</ion-label>
+        <ion-checkbox formControlName="enable"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <button ion-button block type="submit" [disabled]="!formGroup.valid">Submit</button>
+  </form>
 
 </ion-content>

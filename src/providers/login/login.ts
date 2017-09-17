@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 import {BaseHttpProvider} from "../base-http/base-http";
-import {User} from "../../User";
+import {User} from "../../models/User";
+import {Observable} from "rxjs/Observable";
 
 
 /*
@@ -17,10 +19,10 @@ export class LoginProvider {
     console.log('Hello LoginProvider Provider');
   }
 
-  findTokenByUsernameAndPassword(user: User): void {
-    this._baseHttp.post("/login", user)
-      .map((response: Response) =>  response.headers.get("authorization"))
-      .subscribe(body => this._baseHttp.token = body);
+  findTokenByUsernameAndPassword(user: User): Observable<any> {
+    return this._baseHttp.post("/login", user)
+      .map((response: Response) => response.headers.get("authorization"))
+      .do(body => this._baseHttp.token = body);
   }
 
 }
