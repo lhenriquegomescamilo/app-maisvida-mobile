@@ -17,10 +17,10 @@ export class LoginProvider {
     console.log('Hello LoginProvider Provider');
   }
 
-  getTokenByUsernameAndPassword(user: User) {
+  findTokenByUsernameAndPassword(user: User): void {
     this._baseHttp.post("/login", user)
       .map((response: Response) =>  response.headers.get("authorization"))
-      .subscribe(body => console.log(body));
+      .subscribe(body => this._baseHttp.token = body);
   }
 
 }

@@ -27,7 +27,7 @@ export class LoginPage {
   }
 
   login(){
-    this._loginProvider.getTokenByUsernameAndPassword(this.user);
+    this._loginProvider.findTokenByUsernameAndPassword(this.user);
   }
 
 }

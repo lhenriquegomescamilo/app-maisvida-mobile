@@ -11,39 +11,39 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
-import { LoginProvider } from '../providers/login/login';
-import { BaseHttpProvider } from '../providers/base-http/base-http';
+import {LoginProvider} from '../providers/login/login';
+import {BaseHttpProvider} from '../providers/base-http/base-http';
 import {HttpModule} from "@angular/http";
+import {DoctorProvider} from '../providers/doctor/doctor';
+import {DoctorNewPage} from "../pages/doctor-new/doctor-new";
+
+
+const PAGES = [
+  MyApp,
+  AboutPage,
+  ContactPage,
+  HomePage,
+  TabsPage,
+  LoginPage,
+  DoctorNewPage
+]
 
 @NgModule({
-  declarations: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage,
-    LoginPage
-  ],
+  declarations: PAGES,
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage,
-    LoginPage
-  ],
+  entryComponents: PAGES,
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoginProvider,
-    BaseHttpProvider
+    BaseHttpProvider,
+    DoctorProvider
   ]
 })
 export class AppModule {
