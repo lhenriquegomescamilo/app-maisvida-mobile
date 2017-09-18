@@ -45,7 +45,12 @@ export class DoctorNewPage {
   onSubmit() {
     let doctor: Doctor = this.formGroup.value as Doctor;
     console.log(doctor);
-    this._doctorProvider.create(doctor);
+    this._doctorProvider.create(doctor).subscribe(body => {
+      console.log(body);
+    }, error => {
+      console.log(error);
+    });
+    ;
   }
 
 }

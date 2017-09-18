@@ -18,6 +18,7 @@ import {DoctorProvider} from '../providers/doctor/doctor';
 import {DoctorNewPage} from "../pages/doctor-new/doctor-new";
 import {BasePage} from "../pages/base/base";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {DoctorListPage} from "../pages/doctor-list/doctor-list";
 
 
 const PAGES = [
@@ -28,7 +29,8 @@ const PAGES = [
   TabsPage,
   LoginPage,
   DoctorNewPage,
-  BasePage
+  BasePage,
+  DoctorListPage
 ]
 
 @NgModule({

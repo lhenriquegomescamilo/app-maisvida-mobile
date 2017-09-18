@@ -33,7 +33,6 @@ export class BaseHttpProvider {
 
   private _defaultHeaders(): Headers {
     let objectToHeader = {};
-
     if (!_.isEmpty(this._token)) {
       objectToHeader = {"Authorization": this._token};
     }

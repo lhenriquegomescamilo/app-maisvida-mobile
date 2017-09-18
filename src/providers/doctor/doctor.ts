@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Doctor} from "../../models/doctor";
 import {BaseHttpProvider} from "../base-http/base-http";
+import {Observable} from "rxjs/Observable";
 
 /*
   Generated class for the DoctorProvider provider.
@@ -18,12 +18,11 @@ export class DoctorProvider {
     console.log('Hello DoctorProvider Provider');
   }
 
-  create(doctor: Doctor) {
-    this._baseHttp.post(DoctorProvider.BASE_APP_MAISVIDA_URL, doctor)
-      .subscribe(body => {
-        console.log(body);
-      }, error => {
-        console.log(error);
-      });
+  create(doctor: Doctor): Observable<any> {
+    return this._baseHttp.post(DoctorProvider.BASE_APP_MAISVIDA_URL, doctor);
+  }
+
+  findAll(): Observable<any> {
+  return this._baseHttp.get(DoctorProvider.BASE_APP_MAISVIDA_URL);
   }
 }
