@@ -27,4 +27,10 @@ export class DoctorProvider {
       .get(DoctorProvider.BASE_APP_MAISVIDA_URL)
       .map((response: Response) => response.json());
   }
+
+  update(doctor: Doctor): Observable<any> {
+    return this._baseHttp
+      .update(`${DoctorProvider.BASE_APP_MAISVIDA_URL}${doctor.id}`, doctor)
+      .map((response: Response) => response.json());
+  }
 }

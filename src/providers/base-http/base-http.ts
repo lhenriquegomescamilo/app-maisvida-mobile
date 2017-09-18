@@ -30,7 +30,7 @@ export class BaseHttpProvider {
     return this._http.get(`${URL_SERVER}${url}`, this._defaultHeaders());
   }
 
-  private _defaultHeaders(): {headers: any} {
+  private _defaultHeaders(): { headers: any } {
     let objectToHeader = {};
     if (!_.isEmpty(this._token)) {
       objectToHeader = {"Authorization": this._token};
@@ -44,4 +44,7 @@ export class BaseHttpProvider {
     this._token = token;
   }
 
+  update(urlModel: string, model: any): Observable<any> {
+    return this._http.put(`${URL_SERVER}${urlModel}`, model, this._defaultHeaders());
+  }
 }
