@@ -19,9 +19,10 @@ import {DoctorNewPage} from "../pages/doctor-new/doctor-new";
 import {BasePage} from "../pages/base/base";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DoctorListPage} from "../pages/doctor-list/doctor-list";
+import {DoctorShowPage} from "../pages/doctor-show/doctor-show";
 
 
-const PAGES = [
+const _PAGES = [
   MyApp,
   AboutPage,
   ContactPage,
@@ -30,11 +31,12 @@ const PAGES = [
   LoginPage,
   DoctorNewPage,
   BasePage,
-  DoctorListPage
+  DoctorListPage,
+  DoctorShowPage
 ]
 
 @NgModule({
-  declarations: PAGES,
+  declarations: _PAGES,
   imports: [
     BrowserModule,
     HttpModule,
@@ -43,7 +45,7 @@ const PAGES = [
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
-  entryComponents: PAGES,
+  entryComponents: _PAGES,
   providers: [
     StatusBar,
     SplashScreen,

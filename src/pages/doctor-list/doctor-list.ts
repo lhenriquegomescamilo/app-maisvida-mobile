@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {DoctorProvider} from "../../providers/doctor/doctor";
+import {DoctorShowPage} from "../doctor-show/doctor-show";
 
 /**
  * Generated class for the DoctorListPage page.
@@ -23,12 +24,12 @@ export class DoctorListPage {
               private _doctorProvider: DoctorProvider) {
 
   }
-
-  ionViewDidLoad() {
+  
+  ionViewWillEnter() {
     this._doctorProvider
       .findAll()
-      .subscribe(doctors => this._doctors = doctors,
-        error => console.log(error));
+      .subscribe(doctors => this._doctors = doctors
+        , error => console.log(error));
   }
 
   get doctors() {
@@ -40,7 +41,7 @@ export class DoctorListPage {
   }
 
   showDoctor(doctor): void {
-    console.log(doctor);
+    this.navCtrl.push(DoctorShowPage, {parameter: doctor});
   }
 
 }

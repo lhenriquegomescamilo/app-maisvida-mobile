@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Doctor} from "../../models/doctor";
 import {DoctorProvider} from "../../providers/doctor/doctor";
@@ -24,7 +24,8 @@ export class DoctorNewPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private _formBuilder: FormBuilder,
-              private _doctorProvider: DoctorProvider) {
+              private _doctorProvider: DoctorProvider,
+              private _alertCtrl: AlertController) {
     this._initForm();
   }
 
@@ -46,11 +47,20 @@ export class DoctorNewPage {
     let doctor: Doctor = this.formGroup.value as Doctor;
     console.log(doctor);
     this._doctorProvider.create(doctor).subscribe(body => {
-      console.log(body);
+      this._showConfirm();
+      this.formGroup.reset();
     }, error => {
       console.log(error);
     });
-    ;
+  }
+
+  private _showConfirm(): void {
+    let alert = this._alertCtrl.create({
+      title: 'Sucesso',
+      subTitle: 'Cadastro realizado com sucesso',
+      buttons: ['Fechar']
+    });
+    alert.present();
   }
 
 }
