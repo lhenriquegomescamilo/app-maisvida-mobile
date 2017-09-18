@@ -23,6 +23,8 @@ export class DoctorProvider {
   }
 
   findAll(): Observable<any> {
-  return this._baseHttp.get(DoctorProvider.BASE_APP_MAISVIDA_URL);
+    return this._baseHttp
+      .get(DoctorProvider.BASE_APP_MAISVIDA_URL)
+      .map((response: Response) => response.json());
   }
 }

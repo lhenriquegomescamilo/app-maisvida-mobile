@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {DoctorProvider} from "../../providers/doctor/doctor";
-import {Doctor} from "../../models/doctor";
 
 /**
  * Generated class for the DoctorListPage page.
@@ -17,22 +16,31 @@ import {Doctor} from "../../models/doctor";
 })
 export class DoctorListPage {
 
-  private _doctors: Array<Doctor> = new Array<Doctor>();
+  private _doctors = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _doctorProvider: DoctorProvider) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private _doctorProvider: DoctorProvider) {
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DoctorListPage');
-    this._doctorProvider.findAll()
-      .subscribe(doctors => {
-
-        this._doctors = doctors;
-      });
+    this._doctorProvider
+      .findAll()
+      .subscribe(doctors => this._doctors = doctors,
+        error => console.log(error));
   }
 
   get doctors() {
     return this._doctors;
+  }
+
+  editDoctor(doctor): void {
+    console.log(doctor);
+  }
+
+  showDoctor(doctor): void {
+    console.log(doctor);
   }
 
 }

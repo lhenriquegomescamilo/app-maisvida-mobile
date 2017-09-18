@@ -7,12 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>doctor-list</ion-title>
+    <ion-title>Médicos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
 
+    <ion-item-sliding *ngFor="let doctor of doctors">
+
+      <ion-item (click)="showDoctor(doctor)">
+        {{doctor.firstName}} {{doctor.lastName}}
+      </ion-item>
+
+      <ion-item-options>
+        <button ion-button icon-only (click)="editDoctor(doctor)" light>
+          <ion-icon name="paper"></ion-icon>
+        </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
 </ion-content>

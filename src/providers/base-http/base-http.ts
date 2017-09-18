@@ -21,23 +21,23 @@ export class BaseHttpProvider {
   }
 
   public post(url: string, body: any): Observable<any> {
-    let header: Headers = this._defaultHeaders();
     let urlCompiled = `${URL_SERVER}${url}`;
-    return this._http.post(urlCompiled, body, {headers: header});
+    return this._http.post(urlCompiled, body, this._defaultHeaders());
   }
 
 
   public get(url: string): Observable<any> {
-    return this._http.get(url, this._defaultHeaders());
+    return this._http.get(`${URL_SERVER}${url}`, this._defaultHeaders());
   }
 
-  private _defaultHeaders(): Headers {
+  private _defaultHeaders(): {headers: any} {
     let objectToHeader = {};
     if (!_.isEmpty(this._token)) {
       objectToHeader = {"Authorization": this._token};
     }
     let headers: Headers = new Headers(objectToHeader);
-    return headers;
+
+    return {headers: headers};
   }
 
   set token(token: string) {
