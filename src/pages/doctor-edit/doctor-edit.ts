@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Doctor} from "../../models/doctor";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DoctorProvider} from "../../providers/doctor/doctor";
@@ -24,7 +24,8 @@ export class DoctorEditPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private _formBuilder: FormBuilder,
-              private _doctorProvider: DoctorProvider) {
+              private _doctorProvider: DoctorProvider,
+              private _alertCtrl: AlertController) {
 
     this._doctor = this.navParams.get("parameter") as Doctor;
     this._initForm();
@@ -48,10 +49,27 @@ export class DoctorEditPage {
   onSubmit(): void {
     let doctorFromPage = this.formGroup.value as Doctor;
     doctorFromPage.id = this._doctor.id;
-    this._doctorProvider.update(doctorFromPage).subscribe(doctorUpdated => console.log(doctorUpdated)
-      , error => {
-        console.log(error);
-      });
+    this._doctorProvider.update(doctorFromPage).subscribe(doctorUpdated => {
+      console.log(doctorUpdated)
+      this._showSuccessAlterData();
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  _showSuccessAlterData() {
+    let alert = this._alertCtrl.create({
+      title: 'Salvo com sucesso!',
+      buttons: [{
+        text: 'Ok',
+        handler: () => {
+          this.navCtrl.pop();
+
+        }
+      }]
+    });
+    alert.present();
+
   }
 
   emailIsNotEmpty() {

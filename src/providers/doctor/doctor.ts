@@ -29,8 +29,9 @@ export class DoctorProvider {
   }
 
   update(doctor: Doctor): Observable<any> {
+    console.log('update¬', doctor);
     return this._baseHttp
-      .update(`${DoctorProvider.BASE_APP_MAISVIDA_URL}${doctor.id}`, doctor)
+      .update(`${DoctorProvider.BASE_APP_MAISVIDA_URL}`, doctor)
       .map((response: Response) => response.json());
   }
 }
